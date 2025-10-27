@@ -1,0 +1,130 @@
+// Savvly Budget App - Prisma Schema
+// Database schema for irregular income budgeting with smart rollover
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  settings      UserSettings?
+  budgets       Budget[]
+  transactions  Transaction[]
+  goals         Goal[]
+
+  @@map("users")
+}
+
+model UserSettings {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Mode: "accumulation" or "runway"
+  budgetMode        String   @default("accumulation")
+
+  // Tax settings
+  taxRate           Float    @default(0.28)
+  autoTaxReserve    Boolean  @default(true)
+
+  // Income settings
+  averageIncome     Float?
+  incomePattern     String   @default("irregular")
+
+  // Savings runway (for runway mode)
+  currentSavings    Float    @default(0)
+  monthlyExpenses   Float?
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("user_settings")
+}
+
+model Budget {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  category        String
+  amount          Float
+  spent           Float    @default(0)
+
+  // Smart rollover settings
+  rolloverType    String   @default("full")
+  rolloverPercent Float    @default(100)
+  rolloverAmount  Float    @default(0)
+
+  // Special budget flags
+  isTaxReserve    Boolean  @default(false)
+  isFixed         Boolean  @default(false)
+
+  // Period tracking
+  month           Int
+  year            Int
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  transactions    Transaction[]
+
+  @@unique([userId, category, month, year])
+  @@map("budgets")
+}
+
+model Transaction {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  budgetId        String?
+  budget          Budget?  @relation(fields: [budgetId], references: [id], onDelete: SetNull)
+
+  amount          Float
+  description     String
+  category        String?
+  date            DateTime @default(now())
+
+  // Classification
+  isIncome        Boolean  @default(false)
+  isClassified    Boolean  @default(false)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("transactions")
+}
+
+model Goal {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String
+  targetAmount    Float
+  currentAmount   Float    @default(0)
+  category        String?
+
+  // Goal type
+  isRunwayGoal    Boolean  @default(false)
+  isTaxGoal       Boolean  @default(false)
+
+  deadline        DateTime?
+  isCompleted     Boolean  @default(false)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("goals")
+}

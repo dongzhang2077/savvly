@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(tree:*)",
+      "Bash(touch:*)",
+      "Bash(npm install:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx prisma:*)",
+      "Bash(docker --version:*)",
+      "Bash(systeminfo:*)",
+      "Bash(findstr:*)",
+      "Bash(ver:*)",
+      "Bash(docker-compose:*)",
+      "Bash(set DATABASE_URL=postgresql://savvly_user:savvly_dev_password@localhost:5432/savvly_db?schema=public)",
+      "Bash($env:DATABASE_URL=\"postgresql://savvly_user:savvly_dev_password@localhost:5432/savvly_db?schema=public\")",
+      "Bash(dotenv -e .env -- npx prisma generate:*)",
+      "Bash(dotenv -e .env -- npx prisma db push:*)",
+      "Bash(cat:*)",
+      "Bash(export DATABASE_URL=\"postgresql://savvly_user:savvly_dev_password@localhost:5432/savvly_db?schema=public\")",
+      "Bash(docker exec:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(node test-api.mjs:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

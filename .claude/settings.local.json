@@ -21,7 +21,13 @@
       "Bash(docker exec:*)",
       "Bash(npm run dev:*)",
       "Bash(curl:*)",
-      "Bash(node test-api.mjs:*)"
+      "Bash(node test-api.mjs:*)",
+      "Bash(npx shadcn@latest init)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout /t 10)",
+      "Bash(powershell -Command:*)",
+      "Bash(node test-db.mjs:*)"
     ],
     "deny": [],
     "ask": []

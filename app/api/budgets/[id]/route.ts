@@ -20,7 +20,7 @@ export async function GET(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -34,7 +34,7 @@ export async function GET(
 
     if (!budget) {
       return NextResponse.json(
-        { error: "预算不存在" },
+        { error: "Budget not found" },
         { status: 404 }
       );
     }
@@ -44,7 +44,7 @@ export async function GET(
   } catch (error) {
     console.error("Get budget error:", error);
     return NextResponse.json(
-      { error: "获取预算失败" },
+      { error: "Failed to fetch budget" },
       { status: 500 }
     );
   }
@@ -60,7 +60,7 @@ export async function PATCH(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -78,7 +78,7 @@ export async function PATCH(
 
     if (!existingBudget) {
       return NextResponse.json(
-        { error: "预算不存在" },
+        { error: "Budget not found" },
         { status: 404 }
       );
     }
@@ -91,20 +91,20 @@ export async function PATCH(
     });
 
     return NextResponse.json(
-      { message: "预算更新成功", budget }
+      { message: "Budget updated successfully", budget }
     );
 
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Update budget error:", error);
     return NextResponse.json(
-      { error: "更新预算失败" },
+      { error: "Failed to update budget" },
       { status: 500 }
     );
   }
@@ -120,7 +120,7 @@ export async function DELETE(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -135,7 +135,7 @@ export async function DELETE(
 
     if (!existingBudget) {
       return NextResponse.json(
-        { error: "预算不存在" },
+        { error: "Budget not found" },
         { status: 404 }
       );
     }
@@ -147,13 +147,13 @@ export async function DELETE(
     });
 
     return NextResponse.json(
-      { message: "预算删除成功" }
+      { message: "Budget deleted successfully" }
     );
 
   } catch (error) {
     console.error("Delete budget error:", error);
     return NextResponse.json(
-      { error: "删除预算失败" },
+      { error: "Failed to delete budget" },
       { status: 500 }
     );
   }

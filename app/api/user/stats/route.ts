@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Get stats error:", error);
     return NextResponse.json(
-      { error: "获取统计数据失败" },
+      { error: "Failed to fetch statistics" },
       { status: 500 }
     );
   }

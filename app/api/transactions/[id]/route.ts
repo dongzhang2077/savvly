@@ -21,7 +21,7 @@ export async function GET(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -35,7 +35,7 @@ export async function GET(
 
     if (!transaction) {
       return NextResponse.json(
-        { error: "交易不存在" },
+        { error: "Transaction not found" },
         { status: 404 }
       );
     }
@@ -45,7 +45,7 @@ export async function GET(
   } catch (error) {
     console.error("Get transaction error:", error);
     return NextResponse.json(
-      { error: "获取交易失败" },
+      { error: "Failed to fetch transaction" },
       { status: 500 }
     );
   }
@@ -61,7 +61,7 @@ export async function PATCH(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -79,7 +79,7 @@ export async function PATCH(
 
     if (!existingTransaction) {
       return NextResponse.json(
-        { error: "交易不存在" },
+        { error: "Transaction not found" },
         { status: 404 }
       );
     }
@@ -153,20 +153,20 @@ export async function PATCH(
     });
 
     return NextResponse.json(
-      { message: "交易更新成功", transaction }
+      { message: "Transaction updated successfully", transaction }
     );
 
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Update transaction error:", error);
     return NextResponse.json(
-      { error: "更新交易失败" },
+      { error: "Failed to update transaction" },
       { status: 500 }
     );
   }
@@ -182,7 +182,7 @@ export async function DELETE(
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -197,7 +197,7 @@ export async function DELETE(
 
     if (!existingTransaction) {
       return NextResponse.json(
-        { error: "交易不存在" },
+        { error: "Transaction not found" },
         { status: 404 }
       );
     }
@@ -237,13 +237,13 @@ export async function DELETE(
     });
 
     return NextResponse.json(
-      { message: "交易删除成功" }
+      { message: "Transaction deleted successfully" }
     );
 
   } catch (error) {
     console.error("Delete transaction error:", error);
     return NextResponse.json(
-      { error: "删除交易失败" },
+      { error: "Failed to delete transaction" },
       { status: 500 }
     );
   }

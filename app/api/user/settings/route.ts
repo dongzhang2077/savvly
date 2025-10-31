@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Get settings error:", error);
     return NextResponse.json(
-      { error: "获取设置失败" },
+      { error: "Failed to fetch settings" },
       { status: 500 }
     );
   }
@@ -62,7 +62,7 @@ export async function PATCH(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -85,20 +85,20 @@ export async function PATCH(request: NextRequest) {
     });
 
     return NextResponse.json(
-      { message: "设置更新成功", settings }
+      { message: "Settings updated successfully", settings }
     );
 
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Update settings error:", error);
     return NextResponse.json(
-      { error: "更新设置失败" },
+      { error: "Failed to update settings" },
       { status: 500 }
     );
   }

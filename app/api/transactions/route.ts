@@ -6,10 +6,10 @@ import { z } from "zod";
 
 // Validation schema for transaction creation
 const transactionSchema = z.object({
-  amount: z.number().positive("金额必须大于0"),
-  category: z.string().min(1, "请提供类别"),
+  amount: z.number().positive("Amount must be greater than 0"),
+  category: z.string().min(1, "Please provide a category"),
   type: z.enum(["INCOME", "EXPENSE"], {
-    errorMap: () => ({ message: "类型必须是收入或支出" })
+    errorMap: () => ({ message: "Type must be either income or expense" })
   }),
   description: z.string().optional(),
   date: z.string().optional(),
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Get transactions error:", error);
     return NextResponse.json(
-      { error: "获取交易失败" },
+      { error: "Failed to fetch transactions" },
       { status: 500 }
     );
   }
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -153,21 +153,21 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: "交易创建成功", transaction },
+      { message: "Transaction created successfully", transaction },
       { status: 201 }
     );
 
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Create transaction error:", error);
     return NextResponse.json(
-      { error: "创建交易失败" },
+      { error: "Failed to create transaction" },
       { status: 500 }
     );
   }

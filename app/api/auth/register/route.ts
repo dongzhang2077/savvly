@@ -5,9 +5,9 @@ import { z } from "zod";
 
 // Validation schema
 const registerSchema = z.object({
-  email: z.string().email("邮箱格式无效"),
-  password: z.string().min(8, "密码至少需要8个字符"),
-  name: z.string().min(1, "请提供姓名").optional(),
+  email: z.string().email("Invalid email format"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  name: z.string().min(1, "Please provide a name").optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: "该邮箱已被注册" },
+        { error: "This email is already registered" },
         { status: 400 }
       );
     }
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        message: "注册成功",
+        message: "Registration successful",
         user
       },
       { status: 201 }
@@ -70,14 +70,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Registration error:", error);
     return NextResponse.json(
-      { error: "注册失败，请稍后重试" },
+      { error: "Registration failed. Please try again later" },
       { status: 500 }
     );
   }

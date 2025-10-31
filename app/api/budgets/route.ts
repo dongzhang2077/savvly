@@ -6,8 +6,8 @@ import { z } from "zod";
 
 // Validation schema for budget creation
 const budgetSchema = z.object({
-  category: z.string().min(1, "请提供预算类别"),
-  amount: z.number().positive("金额必须大于0"),
+  category: z.string().min(1, "Category is required"),
+  amount: z.number().positive("Amount must be greater than 0"),
   month: z.number().int().min(1).max(12),
   year: z.number().int().min(2020),
   rolloverStrategy: z.enum(["FULL", "PARTIAL", "NONE", "GOAL"]).optional(),
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Get budgets error:", error);
     return NextResponse.json(
-      { error: "获取预算失败" },
+      { error: "Failed to fetch budgets" },
       { status: 500 }
     );
   }
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     if (!session?.user?.id) {
       return NextResponse.json(
-        { error: "未授权" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
 
     if (existingBudget) {
       return NextResponse.json(
-        { error: "该类别的预算已存在" },
+        { error: "Budget already exists for this category" },
         { status: 400 }
       );
     }
@@ -118,21 +118,21 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(
-      { message: "预算创建成功", budget },
+      { message: "Budget created successfully", budget },
       { status: 201 }
     );
 
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "验证失败", details: error.errors },
+        { error: "Validation failed", details: error.errors },
         { status: 400 }
       );
     }
 
     console.error("Create budget error:", error);
     return NextResponse.json(
-      { error: "创建预算失败" },
+      { error: "Failed to create budget" },
       { status: 500 }
     );
   }

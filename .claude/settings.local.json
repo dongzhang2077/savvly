@@ -27,7 +27,14 @@
       "Bash(taskkill:*)",
       "Bash(timeout /t 10)",
       "Bash(powershell -Command:*)",
-      "Bash(node test-db.mjs:*)"
+      "Bash(node test-db.mjs:*)",
+      "Bash(node test-auth.mjs:*)",
+      "Bash(node test-login-api.mjs:*)",
+      "Bash(timeout /t 3)",
+      "Bash(tasklist:*)",
+      "Bash(node test-dashboard.mjs:*)",
+      "Bash(node test-header.mjs:*)",
+      "Bash(del middleware.ts)"
     ],
     "deny": [],
     "ask": []

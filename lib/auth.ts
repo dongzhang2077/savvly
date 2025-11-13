@@ -15,7 +15,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("请提供邮箱和密码");
+          throw new Error("Email and password are required");
         }
 
         const user = await prisma.user.findUnique({
@@ -25,7 +25,7 @@ export const authOptions = {
         });
 
         if (!user || !user.passwordHash) {
-          throw new Error("邮箱或密码错误");
+          throw new Error("Invalid email or password");
         }
 
         const isPasswordValid = await bcrypt.compare(
@@ -34,7 +34,7 @@ export const authOptions = {
         );
 
         if (!isPasswordValid) {
-          throw new Error("邮箱或密码错误");
+          throw new Error("Invalid email or password");
         }
 
         return {
@@ -49,7 +49,7 @@ export const authOptions = {
     strategy: "jwt" as const,
   },
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, user }) {

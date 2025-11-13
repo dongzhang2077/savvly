@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -38,6 +39,7 @@ export default function RegisterPage() {
     setError(null)
 
     try {
+      // Step 1: Register the user
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,8 +52,21 @@ export default function RegisterPage() {
         throw new Error(result.error || 'Registration failed')
       }
 
-      // Registration successful, redirect to login
-      router.push('/login?registered=true')
+      // Step 2: Automatically log in the user
+      const signInResult = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      })
+
+      if (signInResult?.error) {
+        // Registration succeeded but auto-login failed - redirect to login
+        router.push('/login?registered=true&message=Please sign in with your new account')
+      } else if (signInResult?.ok) {
+        // Both registration and login succeeded - redirect to dashboard
+        router.push('/dashboard')
+        router.refresh()
+      }
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again later')
     } finally {

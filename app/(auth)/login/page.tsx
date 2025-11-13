@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -21,8 +22,10 @@ type LoginFormData = z.infer<typeof loginSchema>
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
   const {
     register,
@@ -32,21 +35,37 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   })
 
+  // Check for success messages from URL params
+  useEffect(() => {
+    const registered = searchParams.get('registered')
+    const message = searchParams.get('message')
+
+    if (registered === 'true') {
+      setSuccessMessage(
+        message || 'Account created successfully! Please sign in to continue.'
+      )
+    }
+  }, [searchParams])
+
   async function onSubmit(data: LoginFormData) {
     setIsLoading(true)
     setError(null)
 
     try {
-      // TODO: Integrate with NextAuth signIn
-      console.log('Login attempt:', data)
+      const result = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      })
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-
-      // For now, just redirect to dashboard
-      router.push('/dashboard')
+      if (result?.error) {
+        setError("Hmm... Email or password doesn't match. Try again?")
+      } else if (result?.ok) {
+        router.push('/dashboard')
+        router.refresh()
+      }
     } catch (err) {
-      setError('Hmm... Email or password doesn\'t match. Try again?')
+      setError('Something went wrong. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -152,6 +171,13 @@ export default function LoginPage() {
                 Forgot password?
               </Link>
             </div>
+
+            {/* Success Message */}
+            {successMessage && (
+              <div className="rounded-md bg-green-50 p-4">
+                <p className="text-sm text-green-800">{successMessage}</p>
+              </div>
+            )}
 
             {/* Error Message */}
             {error && (

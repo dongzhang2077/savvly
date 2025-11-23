@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
 import Budgets from "./pages/Budgets.jsx";
 import BudgetForm from "./pages/BudgetForm.jsx";

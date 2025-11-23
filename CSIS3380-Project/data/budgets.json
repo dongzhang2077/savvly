@@ -1,0 +1,202 @@
+[
+  {
+    "category": "housing",
+    "amount": 1800,
+    "spent": 1750,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "food",
+    "amount": 650,
+    "spent": 520,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "full"
+  },
+  {
+    "category": "transportation",
+    "amount": 280,
+    "spent": 195,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "partial"
+  },
+  {
+    "category": "utilities",
+    "amount": 210,
+    "spent": 185,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "internet",
+    "amount": 90,
+    "spent": 90,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "entertainment",
+    "amount": 220,
+    "spent": 160,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "partial"
+  },
+  {
+    "category": "personal care",
+    "amount": 140,
+    "spent": 95,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "full"
+  },
+  {
+    "category": "insurance",
+    "amount": 320,
+    "spent": 320,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "health",
+    "amount": 160,
+    "spent": 75,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "education",
+    "amount": 400,
+    "spent": 310,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "gifts",
+    "amount": 120,
+    "spent": 0,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "travel",
+    "amount": 300,
+    "spent": 120,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "subscriptions",
+    "amount": 85,
+    "spent": 70,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "emergency fund",
+    "amount": 500,
+    "spent": 0,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "housing",
+    "amount": 1800,
+    "spent": 1800,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "none"
+  },
+  {
+    "category": "food",
+    "amount": 620,
+    "spent": 640,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "full"
+  },
+  {
+    "category": "transportation",
+    "amount": 260,
+    "spent": 240,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "partial"
+  },
+  {
+    "category": "entertainment",
+    "amount": 210,
+    "spent": 205,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "partial"
+  },
+  {
+    "category": "personal care",
+    "amount": 130,
+    "spent": 120,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "full"
+  },
+  {
+    "category": "health",
+    "amount": 160,
+    "spent": 60,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "education",
+    "amount": 400,
+    "spent": 350,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "gifts",
+    "amount": 100,
+    "spent": 40,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "travel",
+    "amount": 300,
+    "spent": 50,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "emergency fund",
+    "amount": 500,
+    "spent": 0,
+    "month": 10,
+    "year": 2025,
+    "rolloverType": "goal"
+  },
+  {
+    "category": "tax reserve",
+    "amount": 900,
+    "spent": 0,
+    "month": 11,
+    "year": 2025,
+    "rolloverType": "goal"
+  }
+]

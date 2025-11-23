@@ -1,0 +1,107 @@
+[
+  {
+    "description": "Freelance Payment",
+    "category": "income",
+    "amount": 2500,
+    "isIncome": true,
+    "date": "2025-11-10"
+  },
+  {
+    "description": "Rent Payment",
+    "category": "housing",
+    "amount": 1750,
+    "isIncome": false,
+    "date": "2025-11-01"
+  },
+  {
+    "description": "Grocery Run",
+    "category": "food",
+    "amount": 125.5,
+    "isIncome": false,
+    "date": "2025-11-07"
+  },
+  {
+    "description": "Gas Station",
+    "category": "transportation",
+    "amount": 48.2,
+    "isIncome": false,
+    "date": "2025-11-08"
+  },
+  {
+    "description": "Streaming Services",
+    "category": "subscriptions",
+    "amount": 32.99,
+    "isIncome": false,
+    "date": "2025-11-05"
+  },
+  {
+    "description": "Phone Bill",
+    "category": "utilities",
+    "amount": 68.0,
+    "isIncome": false,
+    "date": "2025-11-03"
+  },
+  {
+    "description": "Therapy Session",
+    "category": "health",
+    "amount": 95.0,
+    "isIncome": false,
+    "date": "2025-11-09"
+  },
+  {
+    "description": "Coffee Shop",
+    "category": "food",
+    "amount": 14.75,
+    "isIncome": false,
+    "date": "2025-11-11"
+  },
+  {
+    "description": "Gym Membership",
+    "category": "personal care",
+    "amount": 42.5,
+    "isIncome": false,
+    "date": "2025-11-02"
+  },
+  {
+    "description": "Electricity Bill",
+    "category": "utilities",
+    "amount": 112.4,
+    "isIncome": false,
+    "date": "2025-11-04"
+  },
+  {
+    "description": "Online Course",
+    "category": "education",
+    "amount": 199.0,
+    "isIncome": false,
+    "date": "2025-11-06"
+  },
+  {
+    "description": "Dining Out",
+    "category": "entertainment",
+    "amount": 76.9,
+    "isIncome": false,
+    "date": "2025-11-12"
+  },
+  {
+    "description": "Transit Pass",
+    "category": "transportation",
+    "amount": 110.0,
+    "isIncome": false,
+    "date": "2025-11-01"
+  },
+  {
+    "description": "Emergency Fund Transfer",
+    "category": "emergency fund",
+    "amount": 200,
+    "isIncome": false,
+    "date": "2025-11-13"
+  },
+  {
+    "description": "Client Retainer",
+    "category": "income",
+    "amount": 1200,
+    "isIncome": true,
+    "date": "2025-10-28"
+  }
+]
